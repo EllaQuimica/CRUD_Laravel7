@@ -12,12 +12,12 @@ class TaskController extends Controller
     {
         $taskslist = Task::all();
 
-        return view('index', compact('taskslist'));
+        return view('tasks/index', compact('taskslist'));
     }
 
     public function create()
     {
-        return view('create');
+        return view('tasks/create');
     }
 
    
@@ -43,7 +43,7 @@ class TaskController extends Controller
     {
         $taskslist = Task::findOrFail($id);
 
-        return view('edit', compact('taskslist'));
+        return view('tasks/edit', compact('taskslist'));
     }
 
   
@@ -59,12 +59,7 @@ class TaskController extends Controller
         return redirect('/tasks')->with('success', 'Task Data is successfully updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function destroy($id)
     {
         $taskslist = Task::findOrFail($id);

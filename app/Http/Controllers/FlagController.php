@@ -11,12 +11,13 @@ class FlagController extends Controller
     public function index()
     {
         $flags=Flag::all();
-        return view('flag.index',['flags'=>$flags]);
+
+        return view('flags.index',compact('flagslist'));
     }
 
     public function create()
     {
-        return view('create');
+        return view('flags/create');
     }
 
     public function store(Request $request)

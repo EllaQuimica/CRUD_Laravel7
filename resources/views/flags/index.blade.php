@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout.base')
 
 @section('content')
 <style>
@@ -13,18 +13,30 @@
     </div><br />
   @endif
   
-<div class="container">
-  <div class="card">
-    <div class="card-header">
-      Flag <a href="{{Route('flag.create')}}" class="btn btn-secondary">Add</a>
-    </div>
-    <ul>
-      @foreach($flags as $flag)
-      {{$flag->label}}
-      @endforeach
-    </ul>
-  </div>
-</div>
-
-
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <td>ID</td>
+          <td>Label</td>
+          <td colspan="2">Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($taskslist as $task)
+        <tr>
+            <td>{{$flag->id}}</td>
+            <td>{{$flag->label}}</td>
+            <td><a href="{{ route('flags.edit', $flag->id)}}" class="btn btn-primary">Edit</a></td>
+            <td>
+                <form action="{{ route('flags.destroy', $flag->id)}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+  </table>
+<div>
 @endsection

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout.base')
 
 @section('content')
 <style>
@@ -8,7 +8,7 @@
 </style>
 <div class="card uper">
   <div class="card-header">
-    Edit Task Data
+    Add Task Data
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -20,22 +20,21 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('tasks.update', $taskslist->id ) }}">
+      <form method="post" action="{{ route('tasks.store') }}">
           <div class="form-group">
               @csrf
-              @method('PATCH')
               <label for="task_name">Task Name:</label>
-              <input type="text" class="form-control" name="task_name" value="{{ $taskslist->task_name }}"/>
+              <input type="text" class="form-control" name="task_name"/>
           </div>
           <div class="form-group">
               <label for="description">Description :</label>
-              <textarea rows="5" columns="5" class="form-control" name="description">{{ $taskslist->description }}</textarea>
+              <textarea rows="5" columns="5" class="form-control" name="description"></textarea>
           </div>
           <div class="form-group">
-              <label for="time">Time Hours :</label>
-              <input type="text" class="form-control" name="time" value="{{ $taskslist->time }}"/>
+              <label for="time">Time hours:</label>
+              <input type="text" class="form-control" name="time"/>
           </div>
-          <button type="submit" class="btn btn-primary">Update Data</button>
+          <button type="submit" class="btn btn-primary">Add Task</button>
       </form>
   </div>
 </div>
