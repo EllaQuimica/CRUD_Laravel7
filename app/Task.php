@@ -8,8 +8,8 @@ class Task extends Model
 {
     protected $fillable = ['task_name', 'description', 'time'];
 
-    public function flags(){
-       return $this->hasMany(Flag::class);
+    public function tasks(){
+       return $this->hasMany(Task::class);
     }
 }
 

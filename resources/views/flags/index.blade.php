@@ -12,7 +12,6 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
-  
   <table class="table table-striped">
     <thead>
         <tr>
@@ -22,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($taskslist as $task)
+        @foreach($flags as $flag)
         <tr>
             <td>{{$flag->id}}</td>
             <td>{{$flag->label}}</td>

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout.base')
 
 @section('content')
 <style>
@@ -8,7 +8,7 @@
 </style>
 <div class="card uper">
   <div class="card-header">
-    Add Task Data
+    Add Flags
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -20,21 +20,14 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('tasks.store') }}">
+      <form method="post" action="{{ route('flags.store') }}">
           <div class="form-group">
               @csrf
-              <label for="task_name">Task Name:</label>
-              <input type="text" class="form-control" name="task_name"/>
+              <label for="label">Label Name:</label>
+              <input type="text" class="form-control" name="label"/>
           </div>
-          <div class="form-group">
-              <label for="description">Description :</label>
-              <textarea rows="5" columns="5" class="form-control" name="description"></textarea>
-          </div>
-          <div class="form-group">
-              <label for="time">Time hours:</label>
-              <input type="text" class="form-control" name="time"/>
-          </div>
-          <button type="submit" class="btn btn-primary">Add Task</button>
+         
+          <button type="submit" class="btn btn-primary">Add Flag</button>
       </form>
   </div>
 </div>

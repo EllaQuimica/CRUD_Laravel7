@@ -12,7 +12,7 @@ class FlagController extends Controller
     {
         $flags=Flag::all();
 
-        return view('flags.index',compact('flagslist'));
+        return view('flags.index',['flags'=>$flags]);
     }
 
     public function create()
@@ -30,37 +30,35 @@ class FlagController extends Controller
         return redirect('/flags')->with('success', 'Task is successfully saved');
     }
 
-    public function show(Flag $flag)
+    public function show($id)
     {
         //
     }
 
     
-    public function edit(Flag $flag)
+    public function edit($id)
     {
-        //
+        $flags = Flag::findOrFail($id);
+
+        return view('flags/edit', ['flags'=>$flags]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Flag  $flag
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Flag $flag)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'label' => 'required|max:255',
+        ]);
+        Flag::whereId($id)->update($validatedData);
+
+        return redirect('/flags')->with('success', 'Task Data is successfully updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Flag  $flag
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Flag $flag)
+   
+    public function destroy($id)
     {
-        //
+        $flags = Flag::findOrFail($id);
+        $flags->delete();
+
+        return redirect('/flags')->with('success', 'Task Data is successfully deleted');
     }
 }
